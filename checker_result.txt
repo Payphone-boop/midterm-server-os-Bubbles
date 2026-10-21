@@ -1,0 +1,21 @@
+Server OS Midterm Lab 01
+Group checker ID: lab01
+Company/domain: NovaPeak / novapeak.lab
+
+Final checker result from Killercoda:
+TOTAL: 25.0 / 25
+
+C1: DNS authoritative and reachable — 2/2
+C2: All four A records correct — 3/3
+C3: Reverse lookup returns ns1 — 2/2
+C4: BIND configuration and zone checks — 2/2
+C5: DHCP configuration and service — 2/2
+C6: Client obtained lease 192.168.19.104 — 3/3
+C7: DHCP pool and netmask — 2/2
+C8: Gateway advertised correctly — 2/2
+C9: Company DNS advertised — 3/3
+C10: Company domain advertised — 1/1
+C11: Client resolves www through leased resolver — 3/3
+
+Note: This result was retained from the completed Killercoda session.
+This text is a reconstructed record, not the original checker output file.
