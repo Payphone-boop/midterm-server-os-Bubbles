@@ -18,7 +18,13 @@ Fill in one entry per fault found. Include real command output as evidence.
 
 - **Symptom (what we observed):**
   ```
-  [Paste actual command and output showing the problem]
+  [root@ubuntu:~$ named-checkconf -z
+zone novapeak.lab/IN: loaded serial 2024010102
+zone 19.168.192.in-addr.arpa/IN: loaded serial 2024010101
+zone localhost/IN: loaded serial 2
+zone 127.in-addr.arpa/IN: loaded serial 1
+zone 0.in-addr.arpa/IN: loaded serial 1
+zone 255.in-addr.arpa/IN: loaded serial 1]
   ```
 - **Hypothesis (what we suspected and why):**
   The DNS forward zone may reference a zone file that does not exist at the configured path.
