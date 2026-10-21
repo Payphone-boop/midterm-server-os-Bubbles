@@ -18,14 +18,35 @@ Fill in one entry per fault found. Include real command output as evidence.
 
 - **Symptom (what we observed):**
   ```
-  [root@ubuntu:~$ named-checkconf -z
-zone novapeak.lab/IN: loaded serial 2024010102
-zone 19.168.192.in-addr.arpa/IN: loaded serial 2024010101
-zone localhost/IN: loaded serial 2
-zone 127.in-addr.arpa/IN: loaded serial 1
-zone 0.in-addr.arpa/IN: loaded serial 1
-zone 255.in-addr.arpa/IN: loaded serial 1]
+  named-checkconf -z FAILED; named-checkzone clean
   ```
+
+- **Hypothesis (what we suspected and why):**
+  The forward DNS zone referenced an incorrect zone-file path, `/etc/bind/db.MISSING`, so BIND could not load the `novapeak.lab` zone.
+
+- **Proof (the command that confirmed the cause):**
+  ```
+  root@ubuntu:~$ named-checkconf -z
+  zone novapeak.lab/IN: loading from master file /etc/bind/db.MISSING failed: file ...
+  ```
+  The original error was recorded in `/root/session.log`. The displayed error is shortened here; use the complete recorded output if available.
+
+- **Fix (what we changed):**
+  Changed the zone-file path in `/etc/bind/named.conf.local` from `/etc/bind/db.MISSING` to `/etc/bind/db.novapeak.lab`.
+
+- **Confirmation (output showing it now works):**
+  ```
+  root@ubuntu:~$ named-checkconf -z
+  zone novapeak.lab/IN: loaded serial 2024010102
+  zone 19.168.192.in-addr.arpa/IN: loaded serial 2024010101
+  zone localhost/IN: loaded serial 2
+  zone 127.in-addr.arpa/IN: loaded serial 1
+  zone 0.in-addr.arpa/IN: loaded serial 1
+  zone 255.in-addr.arpa/IN: loaded serial 1
+  ```
+
+- **Found/proved by:** [Enter the group member(s) who diagnosed and verified this fault]
+
 - **Hypothesis (what we suspected and why):**
   The DNS forward zone may reference a zone file that does not exist at the configured path.
 - **Proof (the command that confirmed the cause):**
